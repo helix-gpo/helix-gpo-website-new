@@ -1,0 +1,599 @@
+<section class="hero-section" id="hero">
+  <div class="hero-container">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Digitalisierung & Prozessoptimierung</p>
+      <h1 class="hero-title">
+        Die <span class="highlight">DNA</span><br />
+        Deines Unternehmens
+      </h1>
+      <p class="hero-description">
+        Wir gestalten die Prozesse Deines Unternehmens mithilfe modernster Maßnahmen der
+        Geschäftsprozessoptimierung <strong>effizient</strong>, <strong>effektiv</strong> und
+        <strong>digital</strong>.
+      </p>
+      <div class="button-links">
+        <button class="button-link starten-link" (click)="scrollToElementByButton('cta')">
+          Jetzt Starten
+        </button>
+        <button class="button-link info-link" (click)="scrollToElementByButton('dienstleistung')">
+          Mehr Erfahren
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">30%</span>
+          <span class="stat-label">Ø Umsatzverlust durch ineffiziente Prozesse</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Individuelle, maßgeschneiderte Lösungen</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="visual-blob"></div>
+
+      <svg class="visual-graphic" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gridGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#03dbff" stop-opacity="0.5" />
+            <stop offset="100%" stop-color="#fc03d5" stop-opacity="0.5" />
+          </linearGradient>
+        </defs>
+        <circle
+          cx="240"
+          cy="240"
+          r="170"
+          fill="none"
+          stroke="url(#gridGradient)"
+          stroke-width="1.5"
+          stroke-dasharray="4 8"
+        />
+        <circle
+          cx="240"
+          cy="240"
+          r="120"
+          fill="none"
+          stroke="#ffffff"
+          stroke-opacity="0.25"
+          stroke-width="1"
+        />
+        <line
+          x1="130"
+          y1="180"
+          x2="240"
+          y2="240"
+          stroke="#ffffff"
+          stroke-opacity="0.3"
+          stroke-width="1.5"
+        />
+        <line
+          x1="240"
+          y1="240"
+          x2="360"
+          y2="160"
+          stroke="#ffffff"
+          stroke-opacity="0.3"
+          stroke-width="1.5"
+        />
+        <line
+          x1="240"
+          y1="240"
+          x2="300"
+          y2="360"
+          stroke="#ffffff"
+          stroke-opacity="0.3"
+          stroke-width="1.5"
+        />
+        <line
+          x1="240"
+          y1="240"
+          x2="120"
+          y2="330"
+          stroke="#ffffff"
+          stroke-opacity="0.3"
+          stroke-width="1.5"
+        />
+        <circle cx="130" cy="180" r="6" fill="#03dbff" />
+        <circle cx="360" cy="160" r="6" fill="#fc03d5" />
+        <circle cx="300" cy="360" r="6" fill="#03dbff" />
+        <circle cx="120" cy="330" r="6" fill="#fc03d5" />
+      </svg>
+
+      <div class="floating-card card-top">
+        <span class="material-symbols-rounded">trending_up</span>
+        <div>
+          <p class="card-title">Effizienz</p>
+          <p class="card-value">+42%</p>
+        </div>
+      </div>
+
+      <div class="floating-card card-bottom">
+        <span class="material-symbols-rounded">automation</span>
+        <div>
+          <p class="card-title">Automatisiert</p>
+          <p class="card-value">24/7</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dienstleistung-section" id="dienstleistung">
+  <div class="dienstleistung-container">
+    <p class="headline-p">Nutze</p>
+    <h1 class="headline-text">Unsere Dienstleistung</h1>
+    <p class="section-intro">
+      Vier Schritte, mit denen wir Deine Unternehmensprozesse nachhaltig transformieren.
+    </p>
+
+    <div class="dienstleistung-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <div class="step-icon-wrapper">
+          <app-icon
+            [iconName]="'document_search'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="step-headline">
+          Prozesse analysieren, Digitalisierungspotenziale erkennen und nachhaltige Lösungen
+          entwickeln
+        </p>
+        <p class="step-text">
+          Eine fundierte Analyse ist der Schlüssel für effiziente und zukunftsfähige Prozesse!
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <div class="step-icon-wrapper">
+          <app-icon
+            [iconName]="'military_tech'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="step-headline">
+          Einheitliche Prozesse schaffen, um Effizienz, Schulung und Skalierbarkeit zu verbessern
+        </p>
+        <p class="step-text">
+          Standardisierte Abläufe erleichtern Schulungen und fördern nachhaltige
+          Unternehmensentwicklung!
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <div class="step-icon-wrapper">
+          <app-icon
+            [iconName]="'finance_mode'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="step-headline">
+          Geschäftsprozesse effizienter, digitaler und leistungsstärker gestalten
+        </p>
+        <p class="step-text">
+          Wir optimieren Abläufe durch Digitalisierung, Automatisierung und individuelle
+          Prozessanpassung!
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <div class="step-icon-wrapper">
+          <app-icon
+            [iconName]="'settings_account_box'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="step-headline">
+          Langfristige Begleitung für nachhaltige Prozess- und Softwareentwicklung
+        </p>
+        <p class="step-text">
+          Wir sind Dein Partner für kontinuierliche Verbesserung und digitale Innovation!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-us-section" id="about-us">
+  <div class="about-us-container">
+    <p class="headline-p">Infos</p>
+    <h1 class="headline-text">Über Uns</h1>
+
+    <div class="about-us-grid">
+      <div class="profile-card">
+        <div class="profile-image">
+          <img src="images/about us/Felix Breuer Image.jpg" alt="Profilbild - Felix Breuer" />
+          <div class="profile-overlay">
+            <p>
+              Professioneller Softwareentwickler bei der MRH Trowe mit Bachelor Abschluss in
+              Wirtschaftsinformatik (B.Sc.) aus dem dualen Studium bei 3M
+            </p>
+          </div>
+        </div>
+        <div class="profile-info">
+          <p class="profile-name">Felix Breuer</p>
+          <span class="profile-role">Digitalisierung & Technologie</span>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-image">
+          <img src="images/about us/Henry Heller Image.jpg" alt="Profilbild - Henry Heller" />
+          <div class="profile-overlay">
+            <p>
+              Ausgebildeter Makler/Experte in Risikoabsicherung und Vorsorge (nach § 34d /
+              Finanzmakler) und Lebensretter beim DRK
+            </p>
+          </div>
+        </div>
+        <div class="profile-info">
+          <p class="profile-name">Henry Heller</p>
+          <span class="profile-role profile-role--pink">Strategie & Kommunikation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-us-info">
+      <p class="about-us-question">Warum Geschäftsprozessmanagement?</p>
+      <p class="about-us-text">
+        Unternehmen verlieren jedes Jahr bis zu <strong>30% ihres Umsatzes</strong> – allein durch
+        ineffiziente Prozesse. Das muss nicht sein! Mit intelligentem, modernem
+        Geschäftsprozessmanagement gestalten wir Deine Unternehmensabläufe effizient, digital,
+        zukunftssicher und nachhaltig optimiert – für dauerhaften wirtschaftlichen Erfolg.
+      </p>
+      <p class="about-us-claim">Professionell, persönlich und auf Augenhöhe!</p>
+      <div class="button-links">
+        <button class="button-link starten-link" (click)="scrollToElementByButton('cta')">
+          Jetzt Starten
+        </button>
+        <button class="button-link info-link-dark" (click)="scrollToElementByButton('angebote')">
+          Mehr Erfahren
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="angebote-section" id="angebote">
+  <div class="angebote-container">
+    <p class="headline-p">Entdecke</p>
+    <h1 class="headline-text">Unsere Angebote</h1>
+
+    <div class="angebote-grid">
+      <div class="angebot-card">
+        <div class="angebot-header" style="--accent: #03dbff">
+          <app-icon [iconName]="'hub'" [iconColor]="'#ffffff'" [iconSize]="'4.8rem'"></app-icon>
+        </div>
+        <div class="angebot-content">
+          <p class="angebot-title">Prozessoptimierung</p>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'document_search'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Prozessanalyse</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'settings_b_roll'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Automatisierung</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'network_intel_node'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>KI-Integration</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="angebot-card">
+        <div class="angebot-header" style="--accent: #fc03d5">
+          <app-icon
+            [iconName]="'code_blocks'"
+            [iconColor]="'#ffffff'"
+            [iconSize]="'4.8rem'"
+          ></app-icon>
+        </div>
+        <div class="angebot-content">
+          <p class="angebot-title">Software & Web</p>
+          <div class="angebot-item">
+            <app-icon [iconName]="'code'" [iconColor]="'#03dbff'" [iconSize]="'2.2rem'"></app-icon>
+            <p>Individualsoftware</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'captive_portal'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Webdesign</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'shield_lock'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>IT-Sicherheit</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="angebot-card">
+        <div class="angebot-header" style="--accent: #03dbff">
+          <app-icon
+            [iconName]="'monitor_heart'"
+            [iconColor]="'#ffffff'"
+            [iconSize]="'4.8rem'"
+          ></app-icon>
+        </div>
+        <div class="angebot-content">
+          <p class="angebot-title">Monitoring & Steuerung</p>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'monitor_heart'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Prozessmonitoring</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'finance_mode'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Optimierung</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'schema'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Skalierbarkeit</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="angebot-card">
+        <div class="angebot-header" style="--accent: #fc03d5">
+          <app-icon
+            [iconName]="'rebase_edit'"
+            [iconColor]="'#ffffff'"
+            [iconSize]="'4.8rem'"
+          ></app-icon>
+        </div>
+        <div class="angebot-content">
+          <p class="angebot-title">Strategie & Entwicklung</p>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'rebase_edit'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Workflowintegration</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon
+              [iconName]="'account_tree'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.2rem'"
+            ></app-icon>
+            <p>Struktur</p>
+          </div>
+          <div class="angebot-item">
+            <app-icon [iconName]="'cycle'" [iconColor]="'#03dbff'" [iconSize]="'2.2rem'"></app-icon>
+            <p>Nachhaltigkeit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="angebote-note">
+      <p>
+        Jedes Unternehmen hat <strong>individuelle Anforderungen</strong> – deshalb entwickeln wir
+        maßgeschneiderte Lösungen und Konditionen.
+      </p>
+      <p>
+        Die Preise sind daher nicht pauschal, sondern richten sich jeweils nach Projekt und
+        entsprechendem Umfang.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section" id="projects">
+  <div class="projects-container">
+    <p class="headline-p">Erkunde</p>
+    <h1 class="headline-text">Bisherige Projekte</h1>
+
+    <div class="projects-grid">
+      @for (project of shownProjects(); track project.id) {
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-image-placeholder">
+              <app-icon [iconName]="'work'" [iconColor]="'#ffffff'" [iconSize]="'4rem'"></app-icon>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-title">{{ project.title }}</p>
+            <p class="project-description">{{ project.description }}</p>
+
+            <div class="project-tags">
+              @for (tag of project.tags; track tag.value) {
+                <span class="project-tag" [style.background-color]="tag.colorHex">{{
+                  tag.value
+                }}</span>
+              }
+            </div>
+
+            <div class="project-footer">
+              <div class="project-date">
+                <app-icon
+                  [iconName]="'event_upcoming'"
+                  [iconColor]="'#0d1424'"
+                  [iconSize]="'2rem'"
+                ></app-icon>
+                <span>{{ formatMonthYear(project.startDate) }}</span>
+              </div>
+              <button class="details-button" (click)="handleProjectDetailsButtonClick(project.id)">
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (projects().length > 3) {
+      <div class="projects-toggle">
+        <button class="toggle-button" (click)="handleToggleShowAllProjectsButton()">
+          {{ showAllProjectsText() }}
+        </button>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-container">
+    <p class="headline-p">Vertraue</p>
+    <h1 class="headline-text">Referenzen</h1>
+
+    <p class="testimonials-intro">
+      Unsere Kunden bewerten uns im Durchschnitt mit
+      <span class="rating-highlight">{{ averageRating() }}</span> von 5 Sternen – basierend auf
+      {{ testimonials().length }} verifizierten Erfahrungsberichten!
+    </p>
+
+    <div class="testimonials-grid">
+      @for (testimonial of shownTestimonials(); track testimonial.id) {
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">{{ getInitials(testimonial.partnerName) }}</div>
+            <div class="testimonial-stars">
+              @for (i of ratingArray; track i) {
+                <app-icon
+                  [iconName]="'star'"
+                  [iconSize]="'1.8rem'"
+                  [iconColor]="i > testimonial.rating ? '#e2e5ea' : '#fc03d5'"
+                ></app-icon>
+              }
+            </div>
+          </div>
+
+          <p class="testimonial-description">"{{ testimonial.description }}"</p>
+
+          <div class="testimonial-footer">
+            <p class="testimonial-name">{{ testimonial.partnerName }}</p>
+            <p class="testimonial-role">
+              {{ testimonial.partnerRole }} · {{ testimonial.companyName }}
+            </p>
+            <div class="testimonial-date">
+              <app-icon
+                [iconName]="'calendar_check'"
+                [iconColor]="'#868a92'"
+                [iconSize]="'1.6rem'"
+              ></app-icon>
+              <span>{{ formatMonthYear(testimonial.createdAt) }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (testimonials().length > 3) {
+      <div class="testimonials-pagination">
+        <button
+          class="page-dot"
+          [class.active]="showLeftTestimonials()"
+          (click)="handleShowLeftPage()"
+          aria-label="Vorherige Referenzen"
+        ></button>
+        <button
+          class="page-dot"
+          [class.active]="!showLeftTestimonials()"
+          (click)="handleShowRightPage()"
+          aria-label="Nächste Referenzen"
+        ></button>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="cta-section" id="cta">
+  <div class="cta-container">
+    <p class="headline-p headline-p--light">Jetzt</p>
+    <h1 class="headline-text headline-text--light">Kontakt aufnehmen</h1>
+    <p class="cta-text">
+      Kontaktiere uns auf einem Kanal Deiner Wahl und vereinbare einen kostenlosen Ersttermin!
+    </p>
+
+    <div class="cta-channels">
+      <div class="cta-channel">
+        <div class="cta-icon-wrapper">
+          <app-icon
+            [iconName]="'forward_to_inbox'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="cta-channel-title">Email</p>
+        <p class="cta-channel-text">Schreib uns, wir melden uns zeitnah zurück!</p>
+        <a href="mailto:helix.gpo@gmail.com?subject=Anfrage:%20" class="cta-channel-value">
+          helix.gpo&#64;gmail.com
+        </a>
+      </div>
+
+      <div class="cta-channel">
+        <div class="cta-icon-wrapper">
+          <app-icon
+            [iconName]="'phone_in_talk'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="cta-channel-title">Telefon</p>
+        <p class="cta-channel-text">Direkt anrufen und persönlich sprechen.</p>
+        <a href="tel:+4915114924348" class="cta-channel-value">+49 1511 4924348</a>
+      </div>
+
+      <div class="cta-channel">
+        <div class="cta-icon-wrapper">
+          <app-icon
+            [iconName]="'home_work'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'3.6rem'"
+          ></app-icon>
+        </div>
+        <p class="cta-channel-title">Büro</p>
+        <p class="cta-channel-text">Persönlich vor Ort oder per Online-Meeting.</p>
+        <a
+          href="https://www.google.com/maps?q=Markt+11+41460+Neuss"
+          target="_blank"
+          class="cta-channel-value"
+        >
+          Markt 11, 41460 Neuss
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

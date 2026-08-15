@@ -1,0 +1,191 @@
+@if (!submitted()) {
+  <section class="feedback-hero">
+    <div class="feedback-hero-container">
+      <button class="hero-back-button" (click)="handleBackButtonClick()">
+        <app-icon [iconName]="'arrow_back'" [iconColor]="'#ffffff'" [iconSize]="'2rem'"></app-icon>
+      </button>
+      <p class="hero-eyebrow">Deine Meinung zählt</p>
+      <h1 class="hero-title">Erzähl uns von Deiner Erfahrung</h1>
+      <p class="hero-subtitle">
+        Rechts siehst Du live, wie Dein Feedback als Referenz auf unserer Website erscheinen würde.
+      </p>
+    </div>
+  </section>
+
+  <section class="feedback-split">
+    <div class="feedback-split-container">
+      <!-- Formular -->
+      <div class="form-panel">
+        <div class="form-field">
+          <label>
+            <app-icon
+              [iconName]="'person'"
+              [iconColor]="'#0d1424'"
+              [iconSize]="'1.8rem'"
+            ></app-icon>
+            <span>Dein Name (für die Vorschau)</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="z. B. Max Mustermann"
+            [value]="name()"
+            (input)="name.set($any($event.target).value)"
+          />
+        </div>
+
+        <div class="form-field">
+          <label>
+            <app-icon [iconName]="'work'" [iconColor]="'#0d1424'" [iconSize]="'1.8rem'"></app-icon>
+            <span>Rolle & Unternehmen (optional)</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="z. B. Geschäftsführer · Musterfirma GmbH"
+            [value]="roleCompany()"
+            (input)="roleCompany.set($any($event.target).value)"
+          />
+        </div>
+
+        <div class="form-field">
+          <label [class.warning]="showRatingWarning()">
+            <app-icon [iconName]="'star'" [iconColor]="'#0d1424'" [iconSize]="'1.8rem'"></app-icon>
+            <span>Deine Bewertung</span>
+          </label>
+          <div class="rating-selector">
+            @for (i of ratingArray; track i) {
+              <button type="button" class="star-button" (click)="handleRatingClick(i)">
+                <app-icon
+                  [iconName]="'star'"
+                  [iconSize]="'3.2rem'"
+                  [iconColor]="i <= rating() ? '#fc03d5' : '#e2e5ea'"
+                ></app-icon>
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label [class.warning]="showDescriptionWarning()">
+            <app-icon
+              [iconName]="'chat_add_on'"
+              [iconColor]="'#0d1424'"
+              [iconSize]="'1.8rem'"
+            ></app-icon>
+            <span>Deine Erfahrung</span>
+          </label>
+          <textarea
+            class="form-textarea"
+            placeholder="Was hat Dir an der Zusammenarbeit mit Helix GPO gefallen?"
+            [value]="description()"
+            (input)="description.set($any($event.target).value)"
+          ></textarea>
+        </div>
+
+        <div class="form-field">
+          <label [class.warning]="showAuthTokenWarning()">
+            <app-icon [iconName]="'key'" [iconColor]="'#0d1424'" [iconSize]="'1.8rem'"></app-icon>
+            <span>Email-Code</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Von uns erhaltener Bestätigungscode"
+            [value]="authToken()"
+            (input)="authToken.set($any($event.target).value)"
+          />
+        </div>
+
+        @if (submitError()) {
+          <p class="submit-error">{{ submitError() }}</p>
+        }
+
+        <button class="submit-button" (click)="handleSendButtonClick()" [disabled]="submitting()">
+          @if (!submitting()) {
+            <span>Feedback absenden</span>
+            <app-icon [iconName]="'send'" [iconColor]="'#0d1424'" [iconSize]="'2rem'"></app-icon>
+          } @else {
+            <span>Wird gesendet...</span>
+            <app-icon
+              [iconName]="'progress_activity'"
+              [iconColor]="'#0d1424'"
+              [iconSize]="'2rem'"
+              class="loading-spinner"
+            ></app-icon>
+          }
+        </button>
+      </div>
+
+      <!-- Live-Vorschau -->
+      <div class="preview-panel">
+        <p class="preview-label">So erscheint Deine Referenz</p>
+
+        <div class="preview-card">
+          <div class="preview-header">
+            <div class="preview-avatar">{{ previewInitials() }}</div>
+            <div class="preview-stars">
+              @for (i of ratingArray; track i) {
+                <app-icon
+                  [iconName]="'star'"
+                  [iconSize]="'1.8rem'"
+                  [iconColor]="i > rating() ? '#e2e5ea' : '#fc03d5'"
+                ></app-icon>
+              }
+            </div>
+          </div>
+
+          <p class="preview-description">
+            "{{
+              description() ||
+                'Dein Erfahrungsbericht erscheint hier, sobald Du zu tippen beginnst...'
+            }}"
+          </p>
+
+          <div class="preview-footer">
+            <p class="preview-name">{{ name() || 'Dein Name' }}</p>
+            <p class="preview-role">{{ roleCompany() || 'Rolle · Unternehmen' }}</p>
+            <div class="preview-date">
+              <app-icon
+                [iconName]="'calendar_check'"
+                [iconColor]="'#868a92'"
+                [iconSize]="'1.6rem'"
+              ></app-icon>
+              <span>{{ previewToday() }}</span>
+            </div>
+          </div>
+        </div>
+
+        <app-hint
+          class="preview-hint"
+          ngSkipHydration
+          [iconName]="'info'"
+          [iconColor]="'#03dbff'"
+          [iconSize]="'1.6rem'"
+          [text]="'Nach Prüfung erscheint Deine Referenz genau so auf unserer Startseite.'"
+        ></app-hint>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="success-section">
+    <div class="success-container">
+      <div class="success-icon-wrapper">
+        <app-icon
+          [iconName]="'check_circle'"
+          [iconColor]="'#ffffff'"
+          [iconSize]="'4.8rem'"
+        ></app-icon>
+      </div>
+      <h1>Danke für Dein Feedback, {{ name() }}!</h1>
+      <p>
+        Dein Erfahrungsbericht wurde erfasst. Nach kurzer Prüfung erscheint er als Referenz auf
+        unserer Website.
+      </p>
+      <button class="success-button" (click)="handleBackButtonClick()">
+        <app-icon [iconName]="'arrow_back'" [iconColor]="'#0d1424'" [iconSize]="'2rem'"></app-icon>
+        <span>Zurück zur Startseite</span>
+      </button>
+    </div>
+  </section>
+}

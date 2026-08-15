@@ -1,0 +1,128 @@
+@if (project(); as p) {
+  <section class="case-hero">
+    <div class="case-hero-pattern"></div>
+    <div class="case-hero-container">
+      <button class="hero-back-button" (click)="handleBackButtonClick()">
+        <app-icon [iconName]="'arrow_back'" [iconColor]="'#ffffff'" [iconSize]="'2rem'"></app-icon>
+      </button>
+
+      <p class="case-category">{{ primaryCategory() }}</p>
+      <h1 class="case-title">{{ p.title }}</h1>
+
+      <div class="case-tags">
+        @for (tag of p.tags; track tag.value) {
+          <span class="case-tag" [style.background-color]="tag.colorHex">{{ tag.value }}</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="case-body">
+    <div class="case-body-container">
+      <!-- Hauptinhalt -->
+      <div class="case-main">
+        <p class="case-intro">{{ p.description }}</p>
+        <p class="case-full">{{ p.fullDescription }}</p>
+
+        <div class="case-timeline">
+          <p class="timeline-heading">Unser Vorgehen</p>
+
+          @for (highlight of p.highlights; track highlight; let idx = $index) {
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <span>{{ toRomanStep(idx) }}</span>
+              </div>
+              <div class="timeline-content">
+                <p>{{ highlight }}</p>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="case-cta-inline">
+          <app-icon
+            [iconName]="'lightbulb'"
+            [iconColor]="'#03dbff'"
+            [iconSize]="'2.8rem'"
+          ></app-icon>
+          <div>
+            <p class="cta-inline-title">Ähnliche Herausforderung bei Dir im Unternehmen?</p>
+            <p class="cta-inline-text">
+              Wir schauen uns Deine Prozesse an und finden gemeinsam die passende Lösung.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="case-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-row">
+            <app-icon
+              [iconName]="'event_upcoming'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2rem'"
+            ></app-icon>
+            <div>
+              <p class="sidebar-label">Zeitraum</p>
+              <p class="sidebar-value">{{ formatMonthYear(p.startDate) }}</p>
+            </div>
+          </div>
+
+          <div class="sidebar-row">
+            <app-icon
+              [iconName]="'category'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2rem'"
+            ></app-icon>
+            <div>
+              <p class="sidebar-label">Kategorie</p>
+              <p class="sidebar-value">{{ primaryCategory() }}</p>
+            </div>
+          </div>
+
+          <div class="sidebar-row">
+            <app-icon
+              [iconName]="'checklist'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2rem'"
+            ></app-icon>
+            <div>
+              <p class="sidebar-label">Umfang</p>
+              <p class="sidebar-value">{{ p.highlights.length }} Kernmaßnahmen</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-contact">
+          <app-icon
+            [iconName]="'forward_to_inbox'"
+            [iconColor]="'#ffffff'"
+            [iconSize]="'3.2rem'"
+          ></app-icon>
+          <p class="contact-title">Projekt geplant?</p>
+          <p class="contact-text">Lass uns unverbindlich darüber sprechen.</p>
+          <a href="mailto:helix.gpo@gmail.com?subject=Projektanfrage" class="contact-button">
+            Kontakt aufnehmen
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+} @else {
+  <section class="case-notfound">
+    <div class="notfound-container">
+      <app-icon [iconName]="'search_off'" [iconColor]="'#03dbff'" [iconSize]="'4.8rem'"></app-icon>
+      <h1>Projekt nicht gefunden</h1>
+      <p>Dieses Projekt existiert nicht oder wurde entfernt.</p>
+      <button class="back-button" (click)="handleBackButtonClick()">
+        <app-icon
+          [iconName]="'arrow_back'"
+          [iconColor]="'#0d1424'"
+          [iconSize]="'2.2rem'"
+        ></app-icon>
+        <span>Zurück zu allen Projekten</span>
+      </button>
+    </div>
+  </section>
+}

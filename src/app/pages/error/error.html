@@ -1,0 +1,14 @@
+<section class="error-section">
+  <div class="error-container">
+    <p class="error-code">404</p>
+    <p class="error-headline">Ups! Seite nicht gefunden...</p>
+    <p class="error-text">
+      Die Seite, nach welcher Du suchst, konnte nicht gefunden werden, wurde gelöscht oder ist
+      zurzeit nicht verfügbar.
+    </p>
+    <button class="back-button" (click)="handleBackButtonClick()">
+      <app-icon [iconName]="'arrow_back'" [iconColor]="'#0d1424'" [iconSize]="'2.4rem'"></app-icon>
+      <span>Zurück zur Startseite</span>
+    </button>
+  </div>
+</section>

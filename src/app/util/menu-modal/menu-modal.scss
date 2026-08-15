@@ -1,0 +1,74 @@
+@use '../../../styles' as *;
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-navy);
+  @include flex-col;
+  align-items: center;
+  justify-content: center;
+  gap: 4.8rem;
+  padding: 4rem 2rem;
+}
+
+.modal-brand {
+  @include flex-col(1.2rem);
+  align-items: center;
+  text-align: center;
+}
+
+.modal-logo {
+  width: 20rem;
+  height: auto;
+
+  @include respond(xs) {
+    width: 16rem;
+  }
+}
+
+.modal-tagline {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.04rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.main-nav-list {
+  list-style: none;
+  @include flex-col(2.4rem);
+  align-items: center;
+  width: 100%;
+  padding: 0 3.2rem;
+}
+
+.main-nav-link-button {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 1.2rem 2.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &.cta-link {
+    background-color: var(--accent-cyan);
+    color: var(--main-navy);
+    font-weight: 700;
+    margin-top: 1.6rem;
+    box-shadow: var(--shadow-cyan);
+
+    &:hover {
+      background-color: var(--accent-cyan-hover);
+    }
+  }
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Helix GPO - Digitalisierung & Geschäftsprozessoptimierung</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Helix GPO - Wir gestalten die Prozesse Deines Unternehmens effizient, effektiv und digital."
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400..700;1,400..700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,1,-50..200"
+    />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+
+  <script>
+    // Chatbot bewusst verzögert laden: erst nach kurzer Verzögerung ODER
+    // sobald der Nutzer zum ersten Mal interagiert (scrollen, klicken, tippen).
+    // So beeinträchtigt das Widget nicht die initiale Ladezeit/Lighthouse-Werte.
+    function loadHelixChatbot() {
+      if (window.__helixChatbotLoaded) return;
+      window.__helixChatbotLoaded = true;
+
+      const isMobile = window.innerWidth < 600;
+
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.textContent = `
+      import Chatbot from "https://cdn.n8nchatui.com/v1/embed.js";
+      Chatbot.init({
+        n8nChatUrl: "https://n8n-helix-gpo.com/webhook/cbb0a0c8-94ae-47cf-a0ce-83273df7e67e/chat",
+        metadata: {},
+        theme: {
+          button: {
+            backgroundColor: "#0d1424",
+            right: ${isMobile ? 16 : 32},
+            bottom: ${isMobile ? 16 : 32},
+            size: ${isMobile ? 52 : 64},
+            iconColor: "#ffffff",
+            customIconSrc: "images/chatbot/ai.svg",
+            customIconSize: ${isMobile ? 48 : 60},
+            customIconBorderRadius: 6,
+            autoWindowOpen: { autoOpen: false, openDelay: 2 },
+            borderRadius: "rounded",
+          },
+          tooltip: {
+            showTooltip: ${!isMobile},
+            tooltipMessage: "Brauchst du Hilfe?",
+            tooltipBackgroundColor: "#fc03d5",
+            tooltipTextColor: "#efefef",
+            tooltipFontSize: 16,
+          },
+          chatWindow: {
+            borderRadiusStyle: "rounded",
+            avatarBorderRadius: 6,
+            messageBorderRadius: 6,
+            showTitle: true,
+            title: "Helix GPO Website Assistent",
+            titleAvatarSrc: "images/chatbot/ai.svg",
+            avatarSize: 32,
+            welcomeMessage: "Hallo und willkommen bei Helix GPO! Ich bin dein virtueller Assistent. Wie kann ich dir heute helfen?",
+            errorMessage: "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es später erneut!",
+            backgroundColor: "#ffffff",
+            height: ${isMobile ? Math.round(window.innerHeight * 0.75) : 600},
+            width: ${isMobile ? Math.round(window.innerWidth - 32) : 400},
+            fontSize: 16,
+            starterPrompts: ["Informationen", "Angebote", "Email"],
+            starterPromptFontSize: 16,
+            renderHTML: false,
+            clearChatOnReload: false,
+            showScrollbar: false,
+            botMessage: {
+              backgroundColor: "#0d1424",
+              textColor: "#ffffff",
+              showAvatar: true,
+              avatarSrc: "images/chatbot/ai-dark.png",
+              showCopyToClipboardIcon: false,
+            },
+            userMessage: {
+              backgroundColor: "#fc03d5",
+              textColor: "#ffffff",
+              showAvatar: true,
+              avatarSrc: "images/chatbot/user.png",
+            },
+            textInput: {
+              placeholder: "Type your query",
+              backgroundColor: "#ffffff",
+              textColor: "#1e1e1f",
+              sendButtonColor: "#fc03d5",
+              maxChars: 200,
+              maxCharsWarningMessage: "Du kannst nicht mehr als 200 Zeichen eingeben!",
+              autoFocus: false,
+              borderRadius: 6,
+              sendButtonBorderRadius: 50,
+            },
+            voiceInputConfig: {
+              enabled: true,
+              maxRecordingTime: 15,
+              recordingNotSupportedMessage: "Bitte verwende einen Browser, der die Aufnahme von Audio-Nachrichten unterstützt!",
+              microphoneAccessErrorMessage: "Bitte erlaube in deinen Einstellungen das Aufnehmen über das Mikrofon!",
+            },
+          },
+        },
+      });
+    `;
+      document.body.appendChild(script);
+    }
+
+    // Trigger 1: nach kurzer Verzögerung, falls der Nutzer nichts tut
+    window.addEventListener('load', () => {
+      setTimeout(loadHelixChatbot, 4000);
+    });
+
+    // Trigger 2: sofort bei erster Interaktion (schneller als der Timer)
+    ['scroll', 'click', 'touchstart', 'keydown'].forEach((eventName) => {
+      window.addEventListener(eventName, loadHelixChatbot, { once: true, passive: true });
+    });
+  </script>
+</html>

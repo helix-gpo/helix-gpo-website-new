@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /project-details/
+Disallow: /feedback
+Disallow: /impressum
+Disallow: /datenschutz
+Disallow: /error
+
+Sitemap: https://www.helix-gpo.com/sitemap.xml

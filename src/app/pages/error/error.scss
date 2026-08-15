@@ -1,0 +1,49 @@
+@use '../../../styles' as *;
+
+.error-section {
+  min-height: calc(100vh - 8rem);
+  background: linear-gradient(135deg, var(--main-navy) 0%, var(--main-navy-light) 100%);
+  @include flex-center;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.error-container {
+  @include flex-col(1.6rem);
+  align-items: center;
+  max-width: 52rem;
+}
+
+.error-code {
+  font-size: 9.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.error-headline {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.error-text {
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+}
+
+.back-button {
+  @include button-base;
+  background-color: var(--accent-cyan);
+  color: var(--main-navy);
+  box-shadow: var(--shadow-cyan);
+
+  &:hover {
+    background-color: var(--accent-cyan-hover);
+  }
+}

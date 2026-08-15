@@ -1,0 +1,388 @@
+@use '../styles' as *;
+
+.app-container {
+  min-height: 100vh;
+  @include flex-col;
+}
+
+// =====================
+// HEADER
+// =====================
+
+.header {
+  width: 100%;
+  height: 8rem;
+  background-color: var(--bg-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow: hidden; // schneidet den Logo-Überschuss sauber ab
+}
+
+.header-content {
+  @include container;
+  @include flex-between;
+  height: 100%;
+}
+
+.logo {
+  height: 15rem;
+  width: auto;
+
+  @include respond(md) {
+    height: 12.5rem;
+  }
+
+  @include respond(sm) {
+    height: 10.5rem;
+  }
+}
+
+.main-nav-list {
+  @include flex-center;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.main-nav-link-button {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: var(--bg-light);
+    color: var(--accent-cyan-active);
+  }
+
+  &.cta-link {
+    @include button-base;
+    background-color: var(--main-navy);
+    color: var(--text-light);
+    padding: 1rem 2.2rem;
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+      background-color: var(--main-navy-hover);
+      box-shadow: var(--shadow-cyan);
+    }
+
+    &:active {
+      background-color: var(--main-navy-active);
+    }
+  }
+}
+
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    opacity: 0.5;
+  }
+
+  @include respond(md) {
+    display: block;
+  }
+}
+
+@include respond(md) {
+  .main-nav-list {
+    display: none;
+  }
+}
+
+// =====================
+// STAGING BANNER
+// =====================
+
+.staging-banner {
+  background-color: var(--accent-pink-light);
+  color: var(--accent-pink-active);
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+// =====================
+// MAIN CONTENT
+// =====================
+
+.main-content {
+  flex: 1;
+  @include flex-col;
+}
+
+// =====================
+// FOOTER
+// =====================
+
+.footer {
+  background-color: var(--main-navy);
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.footer-accent {
+  height: 0.4rem;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
+}
+
+// Mini-CTA-Streifen
+
+.footer-cta {
+  background-color: var(--main-navy-light);
+  border-bottom: 1px solid var(--main-navy-border);
+}
+
+.footer-cta-content {
+  @include container;
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 3.2rem 3.2rem;
+
+  @include respond(sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.footer-cta-text {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.footer-cta-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin-bottom: 0.2rem;
+}
+
+.footer-cta-subtitle {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+}
+
+.footer-cta-button {
+  @include button-base;
+  background-color: var(--accent-cyan);
+  color: var(--main-navy);
+  box-shadow: var(--shadow-cyan);
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: var(--accent-cyan-hover);
+    transform: translateY(-0.2rem);
+  }
+}
+
+// Hauptbereich
+
+.footer-main {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1.5px, transparent 1.5px);
+    background-size: 2.4rem 2.4rem;
+    pointer-events: none;
+  }
+}
+
+.footer-top {
+  @include container;
+  padding-top: 6.4rem;
+  padding-bottom: 4.8rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.4rem;
+  position: relative;
+  z-index: 1;
+
+  @include respond(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include respond(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Panel-Look, identisch zum footer-cta-Streifen: gleiche Fläche/Border wie die Social-Buttons
+.footer-panel {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--main-navy-border);
+  border-radius: var(--radius-md);
+  padding: 3.2rem 2.8rem;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  &--brand {
+    @include respond(md) {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.footer-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+
+  p {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+
+  &--spaced {
+    margin-top: 3.2rem;
+  }
+}
+
+.footer-logo {
+  height: 5.6rem; // vorher 4.4rem
+  width: auto;
+  margin-bottom: 1.6rem;
+}
+
+.footer-description {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  margin-bottom: 2.4rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.social-button {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--main-navy-border);
+  cursor: pointer;
+  @include flex-center;
+  transition: all 0.25s;
+
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    fill: var(--text-muted);
+    transition: fill 0.25s;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    border-color: transparent;
+  }
+
+  &--facebook:hover {
+    background-color: rgba(3, 219, 255, 0.15);
+    box-shadow: var(--shadow-cyan);
+    svg {
+      fill: var(--accent-cyan);
+    }
+  }
+
+  &--instagram:hover {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink));
+    box-shadow: var(--shadow-pink);
+    svg {
+      fill: var(--text-light);
+    }
+  }
+
+  &--linkedin:hover {
+    background-color: rgba(252, 3, 213, 0.15);
+    box-shadow: var(--shadow-pink);
+    svg {
+      fill: var(--accent-pink);
+    }
+  }
+}
+
+.footer-nav {
+  list-style: none;
+  @include flex-col(1.2rem);
+
+  li {
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    width: fit-content;
+
+    &:hover {
+      color: var(--accent-cyan);
+    }
+  }
+}
+
+.footer-contact-list {
+  list-style: none;
+  @include flex-col(1.2rem);
+  margin-bottom: 0;
+
+  li {
+    font-size: 1.4rem;
+  }
+}
+
+.footer-contact-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--accent-cyan);
+  }
+}
+
+.footer-bottom {
+  @include container;
+  @include flex-between;
+  padding-top: 2.4rem;
+  padding-bottom: 3.2rem;
+  border-top: 1px solid var(--main-navy-border);
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 1;
+
+  @include respond(sm) {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+.footer-tagline {
+  color: var(--text-muted);
+}

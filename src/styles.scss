@@ -1,0 +1,272 @@
+@use '@angular/material' as mat;
+
+/*
+--- 01 TYPOGRAPHY ---
+Font sizes (rem): 1.2 / 1.4 / 1.6 / 1.8 / 2.0 / 2.4 / 3.0 / 3.6 / 4.4 / 5.2 / 6.2 / 7.4
+
+--- 02 WHITESPACE ---
+Spacing system (rem): 0.4 / 0.8 / 1.2 / 1.6 / 2.4 / 3.2 / 4.8 / 6.4 / 8.0 / 9.6 / 12.8
+
+--- 03 COLORS ---
+Dark Navy:    #0d1424
+Accent Cyan:  #03dbff
+Accent Pink:  #fc03d5
+*/
+
+// =====================
+// MIXINS
+// =====================
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == xl {
+    @media (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 64em) {
+      @content;
+    } // 1024px
+  }
+  @if $breakpoint == md {
+    @media (max-width: 52em) {
+      @content;
+    } // 832px
+  }
+  @if $breakpoint == sm {
+    @media (max-width: 36em) {
+      @content;
+    } // 576px
+  }
+  @if $breakpoint == xs {
+    @media (max-width: 27em) {
+      @content;
+    } // 432px
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin container {
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+  width: 100%;
+
+  @include respond(sm) {
+    padding: 0 2rem;
+  }
+}
+
+@mixin button-base {
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 1.4rem 2.8rem;
+  @include flex-center;
+  gap: 0.8rem;
+}
+
+@mixin section-heading {
+  .headline-p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 0.8rem;
+  }
+
+  .headline-text {
+    font-size: 4.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4.8rem;
+
+    @include respond(sm) {
+      font-size: 3.4rem;
+    }
+  }
+}
+
+@mixin card-hover {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-0.6rem);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+// =====================
+// RESET & BASE
+// =====================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+  overflow-x: hidden;
+  overflow-anchor: none;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$magenta-palette,
+      ),
+      typography: Rubik,
+      density: 0,
+    )
+  );
+
+  @include respond(xl) {
+    font-size: 56.25%;
+  }
+  @include respond(lg) {
+    font-size: 50%;
+  }
+  @include respond(xs) {
+    font-size: 46%;
+  }
+}
+
+body {
+  color-scheme: light;
+  font-family: 'Rubik', sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-dark);
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.grid > * {
+  min-width: 0;
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 500,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+// =====================
+// CSS VARIABLES
+// =====================
+
+:root {
+  // Brand
+  --main-white: #ffffff;
+  --main-navy: #0d1424;
+  --main-navy-light: #171f35;
+  --main-navy-hover: #252c3a;
+  --main-navy-active: #3d4350;
+  --main-navy-opaque: #0d1424cc;
+  --main-navy-border: #3d4350;
+
+  // Accent
+  --accent-cyan: #03dbff;
+  --accent-cyan-hover: #03c5e6;
+  --accent-cyan-active: #02afcc;
+  --accent-cyan-light: #e5fbff;
+
+  --accent-pink: #fc03d5;
+  --accent-pink-hover: #e303c0;
+  --accent-pink-active: #ca02aa;
+  --accent-pink-light: #fde6fa;
+
+  // Text
+  --text-dark: #0d1424;
+  --text-light: #ffffff;
+  --text-grey: #868a92;
+  --text-muted: #b0b3ba;
+
+  // Backgrounds
+  --bg-white: #ffffff;
+  --bg-light: #f5f7fa;
+  --bg-navy: #0d1424;
+
+  // Borders
+  --border-color: #e2e5ea;
+
+  // Shadows – weicher & mehrschichtig statt hart
+  --shadow-sm: 0 0.2rem 0.6rem rgba(13, 20, 36, 0.06);
+  --shadow-md: 0 0.6rem 1.8rem rgba(13, 20, 36, 0.1);
+  --shadow-lg: 0 1.2rem 3.2rem rgba(13, 20, 36, 0.16);
+  --shadow-cyan: 0 0.8rem 2.4rem rgba(3, 219, 255, 0.25);
+  --shadow-pink: 0 0.8rem 2.4rem rgba(252, 3, 213, 0.2);
+
+  // Radius
+  --radius-sm: 0.6rem;
+  --radius-md: 1.2rem;
+  --radius-lg: 2rem;
+
+  // Toastr
+  --toastr-success: #03dbff;
+  --toastr-success-hover: #03c5e6;
+  --toastr-error: #d50000;
+  --toastr-error-hover: #c00000;
+  --toastr-warning: #7f6fea;
+  --toastr-warning-hover: #7264d3;
+}
+
+// =====================
+// SCROLLBAR
+// =====================
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan-hover);
+  cursor: pointer;
+}
+
+// =====================
+// MODAL
+// =====================
+
+.menu-modal {
+  width: 100%;
+  height: 100%;
+}

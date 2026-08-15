@@ -1,0 +1,36 @@
+<div class="modal-wrapper">
+  <div class="modal-brand">
+    <img class="modal-logo" src="/images/logo-no-bg.svg" alt="Helix GPO Logo" />
+    <p class="modal-tagline">Die DNA Deines Unternehmens</p>
+  </div>
+
+  <nav class="main-nav">
+    <ul class="main-nav-list">
+      <li><button class="main-nav-link-button" (click)="closeModal('hero')">Start</button></li>
+      <li>
+        <button class="main-nav-link-button" (click)="closeModal('dienstleistung')">
+          Dienstleistung
+        </button>
+      </li>
+      <li>
+        <button class="main-nav-link-button" (click)="closeModal('about-us')">Über Uns</button>
+      </li>
+      <li>
+        <button class="main-nav-link-button" (click)="closeModal('angebote')">Angebote</button>
+      </li>
+      <li>
+        <button class="main-nav-link-button" (click)="closeModal('projects')">Projekte</button>
+      </li>
+      <li>
+        <button class="main-nav-link-button" (click)="closeModal('testimonials')">
+          Referenzen
+        </button>
+      </li>
+      <li>
+        <button class="main-nav-link-button cta-link" (click)="closeModal('cta')">
+          Jetzt Starten
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
