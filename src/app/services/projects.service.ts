@@ -12,8 +12,4 @@ export class ProjectsService {
 
   readonly projects = computed(() => this.projectsResource.value() ?? []);
   readonly loading = computed(() => this.projectsResource.isLoading());
-
-  findById(id: string): Project | undefined {
-    return this.projects().find((p) => p.id === id);
-  }
 }

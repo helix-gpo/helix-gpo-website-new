@@ -1,4 +1,4 @@
-@use '../../../styles' as *;
+@use '../../../styles/mixins' as *;
 
 // =====================
 // HERO
@@ -381,4 +381,19 @@
   background-color: rgba(229, 72, 77, 0.08);
   border-radius: 0.8rem;
   padding: 1rem 1.4rem;
+}
+
+// =====================
+// CHAR COUNTER
+// =====================
+
+.char-counter {
+  align-self: flex-end;
+  font-size: 1.2rem;
+  color: var(--text-grey);
+  font-variant-numeric: tabular-nums;
+
+  &--full {
+    color: var(--toastr-error);
+  }
 }

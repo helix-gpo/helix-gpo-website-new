@@ -109,7 +109,7 @@
       </aside>
     </div>
   </section>
-} @else {
+} @else if (!loading()) {
   <section class="case-notfound">
     <div class="notfound-container">
       <app-icon [iconName]="'search_off'" [iconColor]="'#03dbff'" [iconSize]="'4.8rem'"></app-icon>

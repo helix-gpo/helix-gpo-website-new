@@ -25,6 +25,13 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 /**
+ * Health check for the load balancer - answers without rendering Angular.
+ */
+app.get('/healthz', (_req, res) => {
+  res.status(200).send('ok');
+});
+
+/**
  * Serve static files from /browser
  */
 app.use(
@@ -41,9 +48,7 @@ app.use(
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 

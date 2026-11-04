@@ -22,9 +22,9 @@ export class TestimonialsService {
   readonly testimonials = computed(() => this.testimonialsResource.value() ?? []);
   readonly loading = computed(() => this.testimonialsResource.isLoading());
 
-  submit(request: SubmitTestimonialRequest): Promise<Testimonial> {
+  submit(request: SubmitTestimonialRequest): Promise<void> {
     return firstValueFrom(
-      this.http.post<Testimonial>(`${environment.TESTIMONIAL_SERVICE_BASE_URL}/submit`, request),
+      this.http.post<void>(`${environment.TESTIMONIAL_SERVICE_BASE_URL}/submit`, request),
     );
   }
 }

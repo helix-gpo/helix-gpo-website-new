@@ -1,0 +1,106 @@
+// mixins only - this file must never emit css, every component @uses it
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == xl {
+    @media (max-width: 75em) {
+      @content;
+    } // 1200px
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 64em) {
+      @content;
+    } // 1024px
+  }
+  @if $breakpoint == md {
+    @media (max-width: 52em) {
+      @content;
+    } // 832px
+  }
+  @if $breakpoint == sm {
+    @media (max-width: 36em) {
+      @content;
+    } // 576px
+  }
+  @if $breakpoint == xs {
+    @media (max-width: 27em) {
+      @content;
+    } // 432px
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin container {
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+  width: 100%;
+
+  @include respond(sm) {
+    padding: 0 2rem;
+  }
+}
+
+@mixin button-base {
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 1.4rem 2.8rem;
+  @include flex-center;
+  gap: 0.8rem;
+}
+
+@mixin section-heading {
+  .headline-p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 0.8rem;
+  }
+
+  .headline-text {
+    font-size: 4.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4.8rem;
+
+    @include respond(sm) {
+      font-size: 3.4rem;
+    }
+  }
+}
+
+@mixin card-hover {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-0.6rem);
+    box-shadow: var(--shadow-lg);
+  }
+}

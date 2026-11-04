@@ -1,11 +1,64 @@
-@if (!submitted()) {
+@if (invitationError(); as error) {
+  <section class="success-section">
+    <div class="success-container">
+      <div class="success-icon-wrapper">
+        <app-icon [iconName]="'link_off'" [iconColor]="'#ffffff'" [iconSize]="'4.8rem'"></app-icon>
+      </div>
+      <h1>Dieser Link funktioniert leider nicht</h1>
+      <p>{{ error }}</p>
+      <p>
+        Melde Dich gern direkt bei uns unter helix.gpo&#64;gmail.com - wir schicken Dir einen neuen
+        Link.
+      </p>
+      <button class="success-button" (click)="handleBackButtonClick()">
+        <app-icon [iconName]="'arrow_back'" [iconColor]="'#0d1424'" [iconSize]="'2rem'"></app-icon>
+        <span>Zur Startseite</span>
+      </button>
+    </div>
+  </section>
+} @else if (loadingInvitation()) {
+  <section class="success-section">
+    <div class="success-container">
+      <app-icon
+        class="loading-spinner"
+        [iconName]="'progress_activity'"
+        [iconColor]="'#03dbff'"
+        [iconSize]="'4.8rem'"
+      ></app-icon>
+      <p>Dein Einladungslink wird geprüft...</p>
+    </div>
+  </section>
+} @else if (submitted()) {
+  <section class="success-section">
+    <div class="success-container">
+      <div class="success-icon-wrapper">
+        <app-icon
+          [iconName]="'check_circle'"
+          [iconColor]="'#ffffff'"
+          [iconSize]="'4.8rem'"
+        ></app-icon>
+      </div>
+      <h1>Danke für Dein Feedback, {{ invitation()?.firstName }}!</h1>
+      <p>
+        Dein Erfahrungsbericht wurde erfasst. Nach kurzer Prüfung erscheint er als Referenz auf
+        unserer Website.
+      </p>
+      <button class="success-button" (click)="handleBackButtonClick()">
+        <app-icon [iconName]="'arrow_back'" [iconColor]="'#0d1424'" [iconSize]="'2rem'"></app-icon>
+        <span>Zurück zur Startseite</span>
+      </button>
+    </div>
+  </section>
+} @else if (invitation()) {
   <section class="feedback-hero">
     <div class="feedback-hero-container">
       <button class="hero-back-button" (click)="handleBackButtonClick()">
         <app-icon [iconName]="'arrow_back'" [iconColor]="'#ffffff'" [iconSize]="'2rem'"></app-icon>
       </button>
       <p class="hero-eyebrow">Deine Meinung zählt</p>
-      <h1 class="hero-title">Erzähl uns von Deiner Erfahrung</h1>
+      <h1 class="hero-title">
+        Hallo {{ invitation()?.firstName }}, erzähl uns von Deiner Erfahrung
+      </h1>
       <p class="hero-subtitle">
         Rechts siehst Du live, wie Dein Feedback als Referenz auf unserer Website erscheinen würde.
       </p>
@@ -16,38 +69,6 @@
     <div class="feedback-split-container">
       <!-- Formular -->
       <div class="form-panel">
-        <div class="form-field">
-          <label>
-            <app-icon
-              [iconName]="'person'"
-              [iconColor]="'#0d1424'"
-              [iconSize]="'1.8rem'"
-            ></app-icon>
-            <span>Dein Name (für die Vorschau)</span>
-          </label>
-          <input
-            class="form-input"
-            type="text"
-            placeholder="z. B. Max Mustermann"
-            [value]="name()"
-            (input)="name.set($any($event.target).value)"
-          />
-        </div>
-
-        <div class="form-field">
-          <label>
-            <app-icon [iconName]="'work'" [iconColor]="'#0d1424'" [iconSize]="'1.8rem'"></app-icon>
-            <span>Rolle & Unternehmen (optional)</span>
-          </label>
-          <input
-            class="form-input"
-            type="text"
-            placeholder="z. B. Geschäftsführer · Musterfirma GmbH"
-            [value]="roleCompany()"
-            (input)="roleCompany.set($any($event.target).value)"
-          />
-        </div>
-
         <div class="form-field">
           <label [class.warning]="showRatingWarning()">
             <app-icon [iconName]="'star'" [iconColor]="'#0d1424'" [iconSize]="'1.8rem'"></app-icon>
@@ -77,24 +98,17 @@
           </label>
           <textarea
             class="form-textarea"
+            [attr.maxlength]="maxDescriptionLength"
             placeholder="Was hat Dir an der Zusammenarbeit mit Helix GPO gefallen?"
             [value]="description()"
-            (input)="description.set($any($event.target).value)"
+            (input)="description.set($any($event.target).value); showDescriptionWarning.set(false)"
           ></textarea>
-        </div>
-
-        <div class="form-field">
-          <label [class.warning]="showAuthTokenWarning()">
-            <app-icon [iconName]="'key'" [iconColor]="'#0d1424'" [iconSize]="'1.8rem'"></app-icon>
-            <span>Email-Code</span>
-          </label>
-          <input
-            class="form-input"
-            type="text"
-            placeholder="Von uns erhaltener Bestätigungscode"
-            [value]="authToken()"
-            (input)="authToken.set($any($event.target).value)"
-          />
+          <p
+            class="char-counter"
+            [class.char-counter--full]="description().length >= maxDescriptionLength"
+          >
+            {{ description().length }} / {{ maxDescriptionLength }}
+          </p>
         </div>
 
         @if (submitError()) {
@@ -108,10 +122,10 @@
           } @else {
             <span>Wird gesendet...</span>
             <app-icon
+              class="loading-spinner"
               [iconName]="'progress_activity'"
               [iconColor]="'#0d1424'"
               [iconSize]="'2rem'"
-              class="loading-spinner"
             ></app-icon>
           }
         </button>
@@ -143,49 +157,29 @@
           </p>
 
           <div class="preview-footer">
-            <p class="preview-name">{{ name() || 'Dein Name' }}</p>
-            <p class="preview-role">{{ roleCompany() || 'Rolle · Unternehmen' }}</p>
+            <p class="preview-name">{{ previewName() }}</p>
+            @if (previewRole()) {
+              <p class="preview-role">{{ previewRole() }}</p>
+            }
             <div class="preview-date">
               <app-icon
                 [iconName]="'calendar_check'"
                 [iconColor]="'#868a92'"
                 [iconSize]="'1.6rem'"
               ></app-icon>
-              <span>{{ previewToday() }}</span>
+              <span>{{ previewToday }}</span>
             </div>
           </div>
         </div>
 
         <app-hint
           class="preview-hint"
-          ngSkipHydration
           [iconName]="'info'"
           [iconColor]="'#03dbff'"
           [iconSize]="'1.6rem'"
           [text]="'Nach Prüfung erscheint Deine Referenz genau so auf unserer Startseite.'"
         ></app-hint>
       </div>
-    </div>
-  </section>
-} @else {
-  <section class="success-section">
-    <div class="success-container">
-      <div class="success-icon-wrapper">
-        <app-icon
-          [iconName]="'check_circle'"
-          [iconColor]="'#ffffff'"
-          [iconSize]="'4.8rem'"
-        ></app-icon>
-      </div>
-      <h1>Danke für Dein Feedback, {{ name() }}!</h1>
-      <p>
-        Dein Erfahrungsbericht wurde erfasst. Nach kurzer Prüfung erscheint er als Referenz auf
-        unserer Website.
-      </p>
-      <button class="success-button" (click)="handleBackButtonClick()">
-        <app-icon [iconName]="'arrow_back'" [iconColor]="'#0d1424'" [iconSize]="'2rem'"></app-icon>
-        <span>Zurück zur Startseite</span>
-      </button>
     </div>
   </section>
 }

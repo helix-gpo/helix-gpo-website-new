@@ -426,40 +426,62 @@
     <h1 class="headline-text">Bisherige Projekte</h1>
 
     <div class="projects-grid">
-      @for (project of shownProjects(); track project.id) {
-        <div class="project-card">
-          <div class="project-image">
-            <div class="project-image-placeholder">
-              <app-icon [iconName]="'work'" [iconColor]="'#ffffff'" [iconSize]="'4rem'"></app-icon>
-            </div>
-          </div>
-          <div class="project-content">
-            <p class="project-title">{{ project.title }}</p>
-            <p class="project-description">{{ project.description }}</p>
-
-            <div class="project-tags">
-              @for (tag of project.tags; track tag.value) {
-                <span class="project-tag" [style.background-color]="tag.colorHex">{{
-                  tag.value
-                }}</span>
-              }
-            </div>
-
-            <div class="project-footer">
-              <div class="project-date">
+      @for (project of shownProjects(); track project.id; let idx = $index) {
+        <article
+          class="project-card"
+          role="link"
+          tabindex="0"
+          [style.--accent]="project.tags[0]?.colorHex ?? '#03dbff'"
+          (click)="handleProjectDetailsButtonClick(project.id)"
+          (keydown.enter)="handleProjectDetailsButtonClick(project.id)"
+        >
+          <div class="project-card-top">
+            <span class="project-number">{{ (idx + 1).toString().padStart(2, '0') }}</span>
+            @if (project.startDate) {
+              <span class="project-date">
                 <app-icon
                   [iconName]="'event_upcoming'"
-                  [iconColor]="'#0d1424'"
-                  [iconSize]="'2rem'"
+                  [iconColor]="'#868a92'"
+                  [iconSize]="'1.6rem'"
                 ></app-icon>
-                <span>{{ formatMonthYear(project.startDate) }}</span>
-              </div>
-              <button class="details-button" (click)="handleProjectDetailsButtonClick(project.id)">
-                Details
-              </button>
-            </div>
+                {{ formatMonthYear(project.startDate) }}
+              </span>
+            }
           </div>
-        </div>
+
+          @if (project.tags[0]; as category) {
+            <p class="project-category">{{ category.value }}</p>
+          }
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+
+          @if (project.highlights.length > 0) {
+            <ul class="project-highlights">
+              @for (highlight of project.highlights.slice(0, 3); track highlight) {
+                <li>
+                  <app-icon
+                    [iconName]="'check_circle'"
+                    [iconColor]="project.tags[0]?.colorHex ?? '#03dbff'"
+                    [iconSize]="'1.8rem'"
+                  ></app-icon>
+                  <span>{{ highlight }}</span>
+                </li>
+              }
+            </ul>
+          }
+
+          <div class="project-footer">
+            <div class="project-tags">
+              @for (tag of project.tags.slice(1); track tag.value) {
+                <span class="project-tag" [style.--tag]="tag.colorHex">{{ tag.value }}</span>
+              }
+            </div>
+            <span class="project-link">
+              Details
+              <app-icon [iconName]="'arrow_forward'" [iconSize]="'1.8rem'"></app-icon>
+            </span>
+          </div>
+        </article>
       }
     </div>
 
