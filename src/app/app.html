@@ -7,7 +7,10 @@
       <nav class="main-nav">
         <ul class="main-nav-list">
           <li>
-            <button class="main-nav-link-button" (click)="scrollToElementByButton('hero')">
+            <button
+              class="main-nav-link-button"
+              (click)="scrollToElementByButton('hero')"
+            >
               Start
             </button>
           </li>
@@ -20,43 +23,66 @@
             </button>
           </li>
           <li>
-            <button class="main-nav-link-button" (click)="scrollToElementByButton('about-us')">
+            <button
+              class="main-nav-link-button"
+              (click)="scrollToElementByButton('about-us')"
+            >
               Über Uns
             </button>
           </li>
           <li>
-            <button class="main-nav-link-button" (click)="scrollToElementByButton('angebote')">
+            <button
+              class="main-nav-link-button"
+              (click)="scrollToElementByButton('angebote')"
+            >
               Angebote
             </button>
           </li>
           <li>
-            <button class="main-nav-link-button" (click)="scrollToElementByButton('projects')">
+            <button
+              class="main-nav-link-button"
+              (click)="scrollToElementByButton('projects')"
+            >
               Projekte
             </button>
           </li>
           <li>
-            <button class="main-nav-link-button" (click)="scrollToElementByButton('testimonials')">
+            <button
+              class="main-nav-link-button"
+              (click)="scrollToElementByButton('testimonials')"
+            >
               Referenzen
             </button>
           </li>
           <li>
-            <button class="main-nav-link-button cta-link" (click)="scrollToElementByButton('cta')">
+            <button
+              class="main-nav-link-button cta-link"
+              (click)="scrollToElementByButton('cta')"
+            >
               Jetzt Starten
             </button>
           </li>
         </ul>
       </nav>
-      <button class="menu-button" (click)="handleMenuButtonClick()" aria-label="Menü öffnen">
-        <app-icon [iconName]="'menu'" [iconColor]="'#0d1424'" [iconSize]="'3.2rem'"></app-icon>
+      <button
+        class="menu-button"
+        (click)="handleMenuButtonClick()"
+        aria-label="Menü öffnen"
+      >
+        <app-icon
+          [iconName]="'menu'"
+          [iconColor]="'#0d1424'"
+          [iconSize]="'3.2rem'"
+        ></app-icon>
       </button>
     </div>
   </header>
 
   @if (!isProd()) {
-    <div class="staging-banner">
-      Diese Website befindet sich aktuell in der Staging-Phase. Wir arbeiten bereits an der finalen
-      Version - echte Projekte und Referenzen folgen bald!
-    </div>
+  <div class="staging-banner">
+    Diese Website befindet sich aktuell in der Staging-Phase. Wir arbeiten
+    bereits an der finalen Version - echte Projekte und Referenzen folgen bald!
+  </div>
   }
 
   <div class="main-content">
@@ -81,7 +107,10 @@
             </p>
           </div>
         </div>
-        <button class="footer-cta-button" (click)="scrollToElementByButton('cta')">
+        <button
+          class="footer-cta-button"
+          (click)="scrollToElementByButton('cta')"
+        >
           Termin vereinbaren
         </button>
       </div>
@@ -90,10 +119,15 @@
     <div class="footer-main">
       <div class="footer-top">
         <div class="footer-panel footer-panel--brand">
-          <img class="footer-logo" src="/images/logo-no-bg.svg" alt="Helix GPO Logo" />
+          <img
+            class="footer-logo"
+            src="/images/logo-no-bg.svg"
+            alt="Helix GPO Logo"
+          />
           <p class="footer-description">
-            Helix GPO gestaltet die Prozesse Deines Unternehmens effizient, effektiv und digital –
-            durch moderne Geschäftsprozessoptimierung, Automatisierung und KI-Integration.
+            Helix GPO gestaltet die Prozesse Deines Unternehmens effizient,
+            effektiv und digital – durch moderne Geschäftsprozessoptimierung,
+            Automatisierung und KI-Integration.
           </p>
           <div class="footer-socials">
             <button
@@ -143,11 +177,15 @@
           </div>
           <ul class="footer-nav">
             <li (click)="scrollToElementByButton('hero')">Start</li>
-            <li (click)="scrollToElementByButton('dienstleistung')">Dienstleistung</li>
+            <li (click)="scrollToElementByButton('dienstleistung')">
+              Dienstleistung
+            </li>
             <li (click)="scrollToElementByButton('about-us')">Über Uns</li>
             <li (click)="scrollToElementByButton('angebote')">Angebote</li>
             <li (click)="scrollToElementByButton('projects')">Projekte</li>
-            <li (click)="scrollToElementByButton('testimonials')">Referenzen</li>
+            <li (click)="scrollToElementByButton('testimonials')">
+              Referenzen
+            </li>
           </ul>
         </div>
 
@@ -170,7 +208,9 @@
               >
             </li>
             <li>
-              <a href="tel:+4915114924348" class="footer-contact-link">+49 1511 4924348</a>
+              <a href="tel:+4915114924348" class="footer-contact-link"
+                >+49 1511 4924348</a
+              >
             </li>
             <li>
               <a href="mailto:helix.gpo@gmail.com" class="footer-contact-link"
@@ -180,20 +220,25 @@
           </ul>
 
           <div class="footer-panel-title footer-panel-title--spaced">
-            <app-icon [iconName]="'gavel'" [iconColor]="'#03dbff'" [iconSize]="'2.4rem'"></app-icon>
+            <app-icon
+              [iconName]="'gavel'"
+              [iconColor]="'#03dbff'"
+              [iconSize]="'2.4rem'"
+            ></app-icon>
             <p>Rechtliches</p>
           </div>
           <ul class="footer-nav">
             <li (click)="routing('datenschutz')">Datenschutz</li>
             <li (click)="routing('impressum')">Impressum</li>
-            <li (click)="routing('feedback')">Feedback geben</li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
         <p>&copy; {{ currentYear() }} Helix GPO. Alle Rechte vorbehalten.</p>
-        <p class="footer-tagline">Digitalisierung & Geschäftsprozessoptimierung aus Neuss</p>
+        <p class="footer-tagline">
+          Digitalisierung & Geschäftsprozessoptimierung aus Neuss
+        </p>
       </div>
     </div>
   </footer>
